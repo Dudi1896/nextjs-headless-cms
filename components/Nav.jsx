@@ -8,6 +8,7 @@ import Provider from './Provider';
 
 
 const Nav = () => {
+  const { data: session } = useSession();
 
   const isUserLoggedIn = true;
 
@@ -16,13 +17,13 @@ const Nav = () => {
 
 
   useEffect(() => {
-    const setProviders = async () => {
+    const setUpProviders = async () => {
       const response = await getProviders();
 
       setProviders(response);
     }
 
-    setProviders();
+    setUpProviders();
   }, [])
 
   return (
@@ -38,9 +39,10 @@ const Nav = () => {
         <p className='logo_text'>Promtpoia</p>
       </Link>
 
+
       {/* Desktop Navigation */}
       <div className='sm:flex hidden'>
-        {isUserLoggedIn ?
+        {session?.user ?
           (<div className='flex gap-3 md:gap-5'>
             <Link href='/create-prompt'
               className='black_btn'>
@@ -79,7 +81,7 @@ const Nav = () => {
 
       {/* Mobile Navigation */}
       <div className='sm:hidden flex relative'>
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className='flex'>
             <Image
               src='/assets/images/logo.svg'
