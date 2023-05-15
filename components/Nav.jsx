@@ -10,7 +10,7 @@ import Provider from './Provider';
 const Nav = () => {
   const { data: session } = useSession();
 
-  const isUserLoggedIn = true;
+  // const isUserLoggedIn = true;
 
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
